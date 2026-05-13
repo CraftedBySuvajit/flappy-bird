@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flappy Bird by Suvajit Ghosh</title>
+    <title>Flappy Bird | Suvajit Ghosh</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
@@ -13,7 +13,9 @@
             --secondary: #ded895;
             --dark: #1a1a1a;
             --accent: #f75d5d;
+            --green: #2ecc71;
         }
+        
         body {
             font-family: 'Outfit', sans-serif;
             background-color: var(--dark);
@@ -23,97 +25,198 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            overflow-x: hidden;
         }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
         }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(78, 192, 202, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
         h1 {
             color: var(--primary);
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 0px #000;
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+            text-shadow: 3px 3px 0px #000;
+            font-weight: 700;
+            letter-spacing: -1px;
         }
+
         p {
             color: #ccc;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             line-height: 1.6;
+            font-weight: 300;
         }
+
         .author {
             color: var(--secondary);
             font-weight: 500;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
+
         .instructions {
             text-align: left;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
         .instructions h2 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--secondary);
             margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
         }
+
+        .instructions h2::before {
+            content: '🎮';
+            margin-right: 10px;
+        }
+
         .instructions ol {
-            padding-left: 20px;
+            padding-left: 25px;
             margin-bottom: 0;
         }
+
         .instructions li {
-            margin-bottom: 10px;
-            color: #ddd;
+            margin-bottom: 12px;
+            color: #e0e0e0;
+            font-weight: 300;
         }
+
         code {
-            background: #000;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: monospace;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-family: 'Courier New', Courier, monospace;
             color: var(--primary);
+            font-size: 0.95rem;
+            border: 1px solid rgba(78, 192, 202, 0.2);
         }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .btn {
             display: inline-block;
-            background: linear-gradient(45deg, #4ec0ca, #3a9ea8);
+            background: linear-gradient(135deg, #4ec0ca 0%, #3a9ea8 100%);
             color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 14px 35px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(78, 192, 202, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 20px rgba(78, 192, 202, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(78, 192, 202, 0.6);
+            box-shadow: 0 15px 30px rgba(78, 192, 202, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .bird-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="bird-icon">🐤</div>
         <h1>Flappy Bird</h1>
         <div class="author">Created by Suvajit Ghosh</div>
         
-        <p>This is a classic Flappy Bird clone built in Python using the Pygame library.</p>
+        <p>An advanced, feature-rich Flappy Bird clone built in Python with Pygame. Experience smooth gameplay, multiple difficulty levels, and a sleek high-score system.</p>
         
         <div class="instructions">
             <h2>How to Play</h2>
             <ol>
                 <li>Clone or download the repository from GitHub.</li>
-                <li>Ensure you have Python installed.</li>
-                <li>Install Pygame by running: <code>pip install pygame</code></li>
-                <li>Run the game: <code>python "flappy bird.py"</code></li>
+                <li>Ensure you have <strong>Python 3.x</strong> installed.</li>
+                <li>Install dependencies: <code>pip install pygame</code></li>
+                <li>Launch the game: <code>python "flappy bird.py"</code></li>
             </ol>
         </div>
         
-        <a href="https://github.com/CraftedBySuvajit/flappy-bird" class="btn">View on GitHub</a>
+        <div class="actions">
+            <a href="https://github.com/CraftedBySuvajit/flappy-bird" class="btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.911 1.235 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.293 0 .322.218.694.825.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                View on GitHub
+            </a>
+            <a href="https://github.com/CraftedBySuvajit/flappy-bird/archive/refs/heads/main.zip" class="btn btn-secondary">
+                📥 Download ZIP
+            </a>
+        </div>
     </div>
 </body>
 </html>
