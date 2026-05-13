@@ -1,4 +1,5 @@
 # Flappy Bird in Python
+Created by Suvajit Ghosh
 
 A simple Flappy Bird clone built using Pygame.
 
